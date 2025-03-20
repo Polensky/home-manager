@@ -97,8 +97,8 @@
 		".config/skhd/skhdrc".source = dotfiles/skhdrc;
 		".config/skhd/yabairc".source = dotfiles/yabairc;
 
-		".config/alacritty/alacritty.yml".source = dotfiles/alacritty/alacritty.yml;
-		".config/alacritty/everforest_dark.yml".source = dotfiles/alacritty/everforest_dark.yml;
+		".config/alacritty/alacritty.toml".source = dotfiles/alacritty/alacritty.toml;
+		".config/alacritty/everforest_dark.toml".source = dotfiles/alacritty/everforest_dark.toml;
   };
 
   # Home Manager can also manage your environment variables through
