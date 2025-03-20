@@ -24,6 +24,7 @@
     brave
 
     # dev
+		alacritty
     lazygit
     gnumake
 
