@@ -27,6 +27,7 @@
 		alacritty
     lazygit
     gnumake
+		tmux
 
 		font-awesome
 		pkgs.nerd-fonts.fira-code
@@ -95,6 +96,9 @@
 
 		".config/skhd/skhdrc".source = dotfiles/skhdrc;
 		".config/skhd/yabairc".source = dotfiles/yabairc;
+
+		".config/alacritty/alacritty.yml".source = dotfiles/alacritty/alacritty.yml;
+		".config/alacritty/everforest_dark.yml".source = dotfiles/alacritty/everforest_dark.yml;
   };
 
   # Home Manager can also manage your environment variables through
