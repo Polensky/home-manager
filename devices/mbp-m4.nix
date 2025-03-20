@@ -99,6 +99,8 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+
+		".config/skhd/skhdrc".source = dotfiles/skhdrc;
   };
 
   # Home Manager can also manage your environment variables through
