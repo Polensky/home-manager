@@ -94,6 +94,7 @@
     # '';
 
 		".config/skhd/skhdrc".source = dotfiles/skhdrc;
+		".config/skhd/yabairc".source = dotfiles/yabairc;
   };
 
   # Home Manager can also manage your environment variables through
