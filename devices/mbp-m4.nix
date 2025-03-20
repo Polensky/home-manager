@@ -23,14 +23,6 @@
   home.packages = with pkgs; [
     brave
 
-    alacritty
-    ripgrep
-    tmux
-    fzf
-    fd
-    brightnessctl
-    unzip
-
     # dev
     lazygit
     gnumake
@@ -56,7 +48,7 @@
   ];
 
 
-	programs.my-ghostty.enable = true;
+	programs.my-ghostty.enable = false;
 
   programs.direnv = {
     enable = true;
