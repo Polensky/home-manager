@@ -6,8 +6,8 @@
 }: {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "polen";
-  home.homeDirectory = "/home/polen";
+  home.username = "charles";
+  home.homeDirectory = "/Users/charlessirois";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -21,42 +21,13 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # hello
     brave
-    qutebrowser
-    discord
-    emacs29-pgtk
-    zathura
-    vimiv-qt
-    pcmanfm
-    newsboat
-
-    # 3D stuff
-    prusa-slicer
-    orca-slicer
-    openscad
-
-    alacritty
-    ranger
-    neovim
-    ripgrep
-    tmux
-    fzf
-    fd
-    brightnessctl
-    unzip
-
-    passExtensions.pass-otp
-    (pass-wayland.withExtensions (ext: with ext; [pass-otp]))
-
-    pamixer
-    playerctl
 
     # dev
+    alacritty
     lazygit
     gnumake
+    tmux
 
     font-awesome
     pkgs.nerd-fonts.fira-code
@@ -74,14 +45,35 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
     (writeShellScriptBin "hms" ''
-      home-manager switch --flake ~/.config/home-manager#polen@xps13
+      home-manager switch --flake ~/.config/home-manager#charles@mbp-intel
     '')
+
+    (pkgs.writeShellApplication {
+      name = "start-session";
+      runtimeInputs = with pkgs; [awscli2 fzf];
+      text = ''
+        if [ -n "$1" ]; then
+        	profile="$1"
+        else
+        	profile="default"
+        fi
+
+        instance_id=$(
+        	aws ec2 describe-instances \
+        		--query 'Reservations[].Instances[].[InstanceId, Tags[?Key==`Name`].Value]' \
+        		--output text \
+        	--profile $profile \
+        	| paste -d ' ' - - \
+        	| fzf \
+        	| awk '{print $1}'
+        )
+
+        aws ssm start-session --profile $profile --target $instance_id
+      '';
+    })
   ];
 
-  fonts.fontconfig.enable = true;
-
-  programs.protonmail-bridge.enable = true;
-  programs.my-ghostty.enable = true;
+  programs.my-ghostty.enable = false;
 
   programs.direnv = {
     enable = true;
@@ -93,7 +85,6 @@
     enableCompletion = true;
     shellAliases = {
       v = "nvim";
-      nrs = "sudo nixos-rebuild switch --flake ~/.config/nixos#default";
     };
   };
 
@@ -112,22 +103,6 @@
     };
   };
 
-  xdg.mimeApps = {
-    enable = true;
-    associations.added = {
-      "application/pdf" = ["org.pwmt.zathura-pdf-mupdf.desktop"];
-      "text/html" = ["brave-browser.desktop"];
-      "image/*" = ["vimiv.desktop"];
-      "x-scheme-handler/magnet" = ["userapp-transmission-gtk-C66AV2.desktop"];
-    };
-    defaultApplications = {
-      "application/pdf" = ["org.pwmt.zathura-pdf-mupdf.desktop"];
-      "text/html" = ["brave-browser.desktop"];
-      "image/*" = ["vimiv.desktop"];
-      "x-scheme-handler/magnet" = ["userapp-transmission-gtk-C66AV2.desktop"];
-    };
-  };
-
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
@@ -141,6 +116,12 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+
+    ".config/skhd/skhdrc".source = dotfiles/skhdrc;
+    ".config/skhd/yabairc".source = dotfiles/yabairc;
+
+    ".config/alacritty/alacritty.toml".source = dotfiles/alacritty/alacritty.toml;
+    ".config/alacritty/everforest_dark.toml".source = dotfiles/alacritty/everforest_dark.toml;
   };
 
   # Home Manager can also manage your environment variables through
@@ -159,13 +140,6 @@
   #  /etc/profiles/per-user/polen/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {EDITOR = "nvim";};
-
-  services.gammastep = {
-    enable = true;
-    provider = "manual";
-    latitude = 46.3;
-    longitude = -72.65;
-  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

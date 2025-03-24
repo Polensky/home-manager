@@ -24,13 +24,13 @@
     brave
 
     # dev
-		alacritty
+    alacritty
     lazygit
     gnumake
-		tmux
+    tmux
 
-		font-awesome
-		pkgs.nerd-fonts.fira-code
+    font-awesome
+    pkgs.nerd-fonts.fira-code
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -48,33 +48,32 @@
       home-manager switch --flake ~/.config/home-manager#charles@mbp-m4
     '')
 
-		(pkgs.writeShellApplication {
-			name = "start-session";
-			runtimeInputs = with pkgs; [awscli2 fzf];
-			text = ''
-				if [ -n "$1" ]; then
-					profile="$1"
-				else
-					profile="default"
-				fi
+    (pkgs.writeShellApplication {
+      name = "start-session";
+      runtimeInputs = with pkgs; [awscli2 fzf];
+      text = ''
+        if [ -n "$1" ]; then
+        	profile="$1"
+        else
+        	profile="default"
+        fi
 
-				instance_id=$(
-					aws ec2 describe-instances \
-						--query 'Reservations[].Instances[].[InstanceId, Tags[?Key==`Name`].Value]' \
-						--output text \
-					--profile $profile \
-					| paste -d ' ' - - \
-					| fzf \
-					| awk '{print $1}'
-				)
+        instance_id=$(
+        	aws ec2 describe-instances \
+        		--query 'Reservations[].Instances[].[InstanceId, Tags[?Key==`Name`].Value]' \
+        		--output text \
+        	--profile $profile \
+        	| paste -d ' ' - - \
+        	| fzf \
+        	| awk '{print $1}'
+        )
 
-				aws ssm start-session --profile $profile --target $instance_id
-			'';
-		})
+        aws ssm start-session --profile $profile --target $instance_id
+      '';
+    })
   ];
 
-
-	programs.my-ghostty.enable = false;
+  programs.my-ghostty.enable = false;
 
   programs.direnv = {
     enable = true;
@@ -118,11 +117,11 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
 
-		".config/skhd/skhdrc".source = dotfiles/skhdrc;
-		".config/skhd/yabairc".source = dotfiles/yabairc;
+    ".config/skhd/skhdrc".source = dotfiles/skhdrc;
+    ".config/skhd/yabairc".source = dotfiles/yabairc;
 
-		".config/alacritty/alacritty.toml".source = dotfiles/alacritty/alacritty.toml;
-		".config/alacritty/everforest_dark.toml".source = dotfiles/alacritty/everforest_dark.toml;
+    ".config/alacritty/alacritty.toml".source = dotfiles/alacritty/alacritty.toml;
+    ".config/alacritty/everforest_dark.toml".source = dotfiles/alacritty/everforest_dark.toml;
   };
 
   # Home Manager can also manage your environment variables through
