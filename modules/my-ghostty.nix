@@ -27,6 +27,7 @@ in {
 				font-family = "FiraCode";
 				background-opacity = 0.80;
 				resize-overlay = "never";
+				cursor-style = "block";
 			};
 
 			themes = {
