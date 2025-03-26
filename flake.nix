@@ -43,5 +43,7 @@
   in {
     homeConfigurations."polen@xps13" = mkHomeConfig ./devices/xps13.nix "x86_64-linux";
     homeConfigurations."polen@pinephone" = mkHomeConfig ./devices/pinephone.nix "aarch64-linux";
+    homeConfigurations."charles@mbp-m4" = mkHomeConfig ./devices/mbp-m4.nix "aarch64-darwin";
+    homeConfigurations."charles@mbp-intel" = mkHomeConfig ./devices/mbp-intel.nix "x86_64-darwin";
   };
 }
