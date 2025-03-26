@@ -29,7 +29,9 @@
 
     # dev
     alejandra
-    lazygit
+
+		# game
+		superTuxKart
 
     passExtensions.pass-otp
     (pass-wayland.withExtensions (ext: with ext; [pass-otp]))
