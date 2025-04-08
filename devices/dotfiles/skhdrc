@@ -78,6 +78,8 @@
 
 # Open application
 cmd - return : open -na "Alacritty"
+rcmd - a : open -na "Alacritty"
+rcmd - z : zeditor
 hyper - e : emacs
 hyper - w : open -na "Qutebrowser"
 hyper - s : open -a "Slack"

@@ -21,8 +21,6 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    brave
-
     # dev
     alacritty
     lazygit
@@ -47,33 +45,10 @@
     (writeShellScriptBin "hms" ''
       home-manager switch --flake ~/.config/home-manager#charles@mbp-m4
     '')
-
-    (pkgs.writeShellApplication {
-      name = "start-session";
-      runtimeInputs = with pkgs; [awscli2 fzf];
-      text = ''
-        if [ -n "$1" ]; then
-        	profile="$1"
-        else
-        	profile="default"
-        fi
-
-        instance_id=$(
-        	aws ec2 describe-instances \
-        		--query 'Reservations[].Instances[].[InstanceId, Tags[?Key==`Name`].Value]' \
-        		--output text \
-        	--profile $profile \
-        	| paste -d ' ' - - \
-        	| fzf \
-        	| awk '{print $1}'
-        )
-
-        aws ssm start-session --profile $profile --target $instance_id
-      '';
-    })
   ];
 
   programs.my-ghostty.enable = false;
+  programs.my-zeditor.enable = true;
 
   programs.direnv = {
     enable = true;
@@ -118,7 +93,7 @@
     # '';
 
     ".config/skhd/skhdrc".source = dotfiles/skhdrc;
-    ".config/skhd/yabairc".source = dotfiles/yabairc;
+    ".config/yabai/yabairc".source = dotfiles/yabairc;
 
     ".config/alacritty/alacritty.toml".source = dotfiles/alacritty/alacritty.toml;
     ".config/alacritty/everforest_dark.toml".source = dotfiles/alacritty/everforest_dark.toml;
