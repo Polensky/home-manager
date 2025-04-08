@@ -32,7 +32,9 @@ in {
       ];
 
       userSettings = {
+        theme = "everforest";
         hour_format = "hour24";
+        vim_mode = true;
       };
     };
   };
