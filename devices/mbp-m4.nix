@@ -49,6 +49,7 @@
 
   programs.my-ghostty.enable = false;
   programs.my-zeditor.enable = true;
+  programs.my-emacs.enable = true;
 
   programs.direnv = {
     enable = true;
