@@ -8,7 +8,7 @@ with lib; let
   cfg = config.programs.my-emacs;
 	emacs-overlay = import (fetchTarball {
     url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-    sha256 = "";
+    sha256 = "1d9v66xqvccsbygkg508720lnr6ya9mf5hjgg968vplf1ha4vjl2";
   });
   my-emacs = pkgs.emacs29.override {
     withNativeCompilation = true;
@@ -30,10 +30,10 @@ in {
 
   ##### implementation
   config = mkIf cfg.enable {
-		pkgs.overlays = [
+		nixpkgs.overlays = [
 			emacs-overlay
 		];
-    services.emacs = {
+    programs.emacs = {
       enable = true;
 			package = my-emacs;
     };
