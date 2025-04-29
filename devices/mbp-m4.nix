@@ -26,6 +26,8 @@
     lazygit
     gnumake
     tmux
+    fzf
+    awscli2
 
     font-awesome
     pkgs.nerd-fonts.fira-code
@@ -45,6 +47,25 @@
     (writeShellScriptBin "hms" ''
       home-manager switch --flake ~/.config/home-manager#charles@mbp-m4
     '')
+    (writeShellApplication {
+      name = "ssm";
+      runtimeInputs = with pkgs; [awscli2 ssm-session-manager-plugin fzf];
+      text = ''
+        profile="''${1:-default}"
+
+        instance_id=$(
+          aws ec2 describe-instances \
+            --query "Reservations[].Instances[].[InstanceId, Tags[?Key=='Name'].Value]" \
+            --output text \
+          --profile "$profile" \
+          | paste -d ' ' - - \
+          | fzf \
+          | awk '{print $1}'
+        )
+
+        aws ssm start-session --profile "$profile" --target "$instance_id"
+      '';
+    })
   ];
 
   programs.my-ghostty.enable = false;
@@ -60,6 +81,8 @@
     enableCompletion = true;
     shellAliases = {
       v = "nvim";
+      wkc = "cd $(ls -d ~/workspace/* | fzf)";
+      wko = "cd $(ls -d ~/workspace/* | fzf); nvim";
     };
   };
 
@@ -97,6 +120,9 @@
 
     ".config/alacritty/alacritty.toml".source = dotfiles/alacritty/alacritty.toml;
     ".config/alacritty/everforest_dark.toml".source = dotfiles/alacritty/everforest_dark.toml;
+
+    ".qutebrowser/themes/everforest.py".source = dotfiles/qutebrowser/everforest.py;
+    ".qutebrowser/config.py".source = dotfiles/qutebrowser/config.py;
   };
 
   # Home Manager can also manage your environment variables through
