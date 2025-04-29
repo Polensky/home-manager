@@ -12,7 +12,7 @@
 
 ## This is here so configs done via the GUI are still loaded.
 ## Remove it to not load settings done via the GUI.
-# config.load_autoconfig(True)
+config.load_autoconfig(True)
 
 ## Aliases for commands. The keys of the given dictionary are the
 ## aliases, while the values are the commands they map to.
@@ -2513,4 +2513,6 @@
 # config.bind('y', 'prompt-accept yes', mode='yesno')
 
 # My stuff
-config.source("themes/everforest.py")
+import everforest
+
+everforest.set(c, "dark", "hard")  # options are dark/light and hard/medium/soft

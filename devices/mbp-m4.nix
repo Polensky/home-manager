@@ -121,7 +121,7 @@
     ".config/alacritty/alacritty.toml".source = dotfiles/alacritty/alacritty.toml;
     ".config/alacritty/everforest_dark.toml".source = dotfiles/alacritty/everforest_dark.toml;
 
-    ".qutebrowser/themes/everforest.py".source = dotfiles/qutebrowser/everforest.py;
+    ".qutebrowser/everforest.py".source = dotfiles/qutebrowser/everforest.py;
     ".qutebrowser/config.py".source = dotfiles/qutebrowser/config.py;
   };
 
