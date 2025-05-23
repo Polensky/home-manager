@@ -1284,7 +1284,7 @@ config.load_autoconfig(True)
 ## either a float value with a "pt" suffix, or an integer value with a
 ## "px" suffix.
 ## Type: String
-# c.fonts.default_size = '10pt'
+c.fonts.default_size = "14pt"
 
 ## Font used for the downloadbar.
 ## Type: Font
@@ -2167,7 +2167,7 @@ config.load_autoconfig(True)
 ## Hide the window decoration.  This setting requires a restart on
 ## Wayland.
 ## Type: Bool
-# c.window.hide_decoration = False
+c.window.hide_decoration = False
 
 ## Format to use for the window title. The same placeholders like for
 ## `tabs.title.format` are defined.
