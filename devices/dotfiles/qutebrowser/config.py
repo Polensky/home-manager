@@ -2167,7 +2167,7 @@ c.fonts.default_size = "14pt"
 ## Hide the window decoration.  This setting requires a restart on
 ## Wayland.
 ## Type: Bool
-c.window.hide_decoration = False
+c.window.hide_decoration = True
 
 ## Format to use for the window title. The same placeholders like for
 ## `tabs.title.format` are defined.
@@ -2513,6 +2513,13 @@ c.window.hide_decoration = False
 # config.bind('y', 'prompt-accept yes', mode='yesno')
 
 # My stuff
+config.bind("xb", "config-cycle statusbar.show always never")
+config.bind("xt", "config-cycle tabs.show always never")
+config.bind(
+    "xa",
+    "config-cycle statusbar.show always never;; config-cycle tabs.show always never",
+)
+
 import everforest
 
 everforest.set(c, "dark", "hard")  # options are dark/light and hard/medium/soft

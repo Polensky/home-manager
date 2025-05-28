@@ -56,6 +56,7 @@ yabai -m rule --add app="zathura$" manage=on
 yabai -m rule --add app="Brave$" manage=on
 yabai -m rule --add app="Element$" manage=on
 yabai -m rule --add app="Alacritty$" manage=on
+yabai -m rule --add app="qutebrowser" title!="^$" role="AXWindow" subrole="AXDialog" manage=on
 
 yabai -m rule --add app="System Preferences$" sticky=on layer=above manage=off
 yabai -m rule --add app="Alfred Preferences$" sticky=on layer=above manage=off

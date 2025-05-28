@@ -28,9 +28,13 @@
     tmux
     fzf
     awscli2
+    ssm-session-manager-plugin
     terraform
     htop
     wget
+    pgcli
+
+    taskwarrior3
 
     mpv
     ffmpeg
