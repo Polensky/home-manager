@@ -27,7 +27,7 @@
     brave
     qutebrowser
     discord
-    emacs29-pgtk
+    emacs30-pgtk
     zathura
     vimiv-qt
     pcmanfm
