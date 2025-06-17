@@ -33,15 +33,27 @@
     htop
     wget
     pgcli
+    tabview # csv viewer
 
-    taskwarrior3
-
+    # media
     mpv
+    cmus
     ffmpeg
     cmus
     pngpaste
+    yt-dlp
 
-    librechat
+    # llm
+    aider-chat-full
+
+    # email
+    neomutt
+    mutt-wizard
+    isync
+    msmtp
+    lynx
+    notmuch
+    abook
 
     font-awesome
     pkgs.nerd-fonts.fira-code
@@ -101,10 +113,24 @@
       wkc = "cd $(ls -d ~/workspace/* | fzf)";
       wko = "cd $(ls -d ~/workspace/* | fzf); nvim";
     };
+    initExtra = ''
+      bindkey '^X^E' edit-command-line
+    '';
+  };
+
+  programs.taskwarrior = {
+    enable = true;
+    config = {
+      sync.server.url = "http://192.168.1.242:10222";
+    };
   };
 
   services.ollama = {
     enable = true;
+    environmentVariables = {
+      OLLAMA_API_BASE = "http://127.0.0.1:11434";
+      OLLAMA_CONTEXT_LENGTH = "8192";
+    };
   };
 
   programs.starship = {

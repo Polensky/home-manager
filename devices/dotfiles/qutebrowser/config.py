@@ -2155,6 +2155,12 @@ c.fonts.default_size = "14pt"
 ## qutebrowser`.
 ## Type: Dict
 # c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}'}
+c.url.searchengines = {
+    "DEFAULT": "https://duckduckgo.com/?q={}",
+    "ghr": "https://github.com/rum-and-code?q={}",
+    "np": "https://search.nixos.org/packages?query={}",
+    "no": "https://search.nixos.org/options?query={}",
+}
 
 ## Page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl
@@ -2519,6 +2525,9 @@ config.bind(
     "xa",
     "config-cycle statusbar.show always never;; config-cycle tabs.show always never",
 )
+
+config.bind(",m", "spawn mpv {url}")
+config.bind(",M", "hint links spawn mpv {hint-url}")
 
 import everforest
 
