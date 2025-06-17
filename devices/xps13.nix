@@ -39,7 +39,6 @@
     openscad
 
     alacritty
-    ranger
     neovim
     ripgrep
     tmux
@@ -47,6 +46,7 @@
     fd
     brightnessctl
     unzip
+    caligula
 
     passExtensions.pass-otp
     (pass-wayland.withExtensions (ext: with ext; [pass-otp]))
@@ -58,7 +58,7 @@
     lazygit
     gnumake
 
-		font-awesome
+    font-awesome
     nerd-fonts.fira-code
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -80,7 +80,7 @@
   fonts.fontconfig.enable = true;
 
   programs.protonmail-bridge.enable = true;
-  programs.my-ghostty.enable = true;
+  programs.my-terminal.enable = true;
 
   programs.direnv = {
     enable = true;
@@ -90,6 +90,7 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    syntaxHighlighting.enable = true;
     shellAliases = {
       v = "nvim";
       nrs = "sudo nixos-rebuild switch --flake ~/.config/nixos#default";
@@ -140,6 +141,11 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+    ".config/alacritty/alacritty.toml".source = dotfiles/alacritty/alacritty.toml;
+    ".config/alacritty/everforest_dark.toml".source = dotfiles/alacritty/everforest_dark.toml;
+
+    ".config/qutebrowser/everforest.py".source = dotfiles/qutebrowser/everforest.py;
+    ".config/qutebrowser/config.py".source = dotfiles/qutebrowser/config.py;
   };
 
   # Home Manager can also manage your environment variables through
