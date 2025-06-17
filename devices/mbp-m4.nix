@@ -97,7 +97,7 @@
     })
   ];
 
-  programs.my-ghostty.enable = false;
+  programs.my-terminal.enable = true;
   programs.my-zeditor.enable = true;
 
   programs.direnv = {

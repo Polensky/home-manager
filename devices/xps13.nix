@@ -38,7 +38,6 @@
     orca-slicer
     openscad
 
-    alacritty
     neovim
     ripgrep
     tmux
@@ -57,6 +56,7 @@
     # dev
     lazygit
     gnumake
+    aider-chat-full
 
     font-awesome
     nerd-fonts.fira-code
