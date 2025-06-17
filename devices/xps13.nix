@@ -57,6 +57,7 @@
     lazygit
     gnumake
     aider-chat-full
+    magic-wormhole
 
     font-awesome
     nerd-fonts.fira-code

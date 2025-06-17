@@ -34,6 +34,7 @@
     wget
     pgcli
     tabview # csv viewer
+    magic-wormhole
 
     # media
     mpv
