@@ -1,7 +1,7 @@
 {...}: {
   imports = [
     ./protonmail-bridge.nix
-    ./my-ghostty.nix
+    ./my-terminal.nix
     ./my-zeditor.nix
     ./my-emacs.nix
   ];

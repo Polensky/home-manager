@@ -39,7 +39,6 @@
     openscad
 
     alacritty
-    ranger
     neovim
     ripgrep
     tmux
@@ -81,7 +80,7 @@
   fonts.fontconfig.enable = true;
 
   programs.protonmail-bridge.enable = true;
-  programs.my-ghostty.enable = true;
+  programs.my-terminal.enable = true;
 
   programs.direnv = {
     enable = true;
