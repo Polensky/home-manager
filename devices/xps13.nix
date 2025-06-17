@@ -90,6 +90,7 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    syntaxHighlighting.enable = true;
     shellAliases = {
       v = "nvim";
       nrs = "sudo nixos-rebuild switch --flake ~/.config/nixos#default";
