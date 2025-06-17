@@ -56,8 +56,7 @@
     notmuch
     abook
 
-    font-awesome
-    pkgs.nerd-fonts.fira-code
+    fira-code
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -97,6 +96,8 @@
       '';
     })
   ];
+
+  fonts.fontconfig.enable = true;
 
   programs.my-terminal.enable = true;
   programs.my-zeditor.enable = true;
@@ -146,6 +147,17 @@
           }
         ];
       };
+    };
+  };
+
+  programs.git = {
+    enable = true;
+    hooks = {
+      "prepare-commit-msg" = ./scripts/prepare-commit-msg.sh;
+    };
+    aliases = {
+      # doesnt quite work
+      #lg = "lg = log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n""          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)"";
     };
   };
 
