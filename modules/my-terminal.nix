@@ -40,14 +40,15 @@ in {
 
         config.font = wezterm.font_with_fallback { "Fira Code" }
 
-        config.font_size = 14.0
+        config.font_size = 16.0
         config.color_scheme = 'Everforest Dark (Gogh)'
-        config.window_background_opacity = 0.9
+        config.window_background_opacity = 0.95
+        config.window_decorations = "RESIZE"
         config.window_padding = {
-          left = 1,
-          right = 1,
-          top = 1,
-          bottom = 1,
+          left = 5,
+          right = 5,
+          top = 5,
+          bottom = 5,
         }
         return config
       '';

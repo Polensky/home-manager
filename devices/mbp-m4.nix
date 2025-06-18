@@ -71,7 +71,7 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
     (writeShellScriptBin "edit-home" ''
-      nvim ~/.config/home-manager
+      cd ~/.config/home-manager && nvim ./devices/mbp-m4.nix
     '')
     (writeShellScriptBin "hms" ''
       home-manager switch --flake ~/.config/home-manager#charles@mbp-m4
@@ -110,6 +110,7 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    syntaxHighlighting.enable = true;
     shellAliases = {
       v = "nvim";
       wkc = "cd $(ls -d ~/workspace/* | fzf)";
@@ -122,6 +123,7 @@
 
   programs.taskwarrior = {
     enable = true;
+    package = pkgs.taskwarrior3;
     config = {
       sync.server.url = "http://192.168.1.242:10222";
     };
