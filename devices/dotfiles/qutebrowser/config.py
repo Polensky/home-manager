@@ -2157,6 +2157,8 @@ c.fonts.default_size = "14pt"
 # c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}'}
 c.url.searchengines = {
     "DEFAULT": "https://duckduckgo.com/?q={}",
+    "perp": "https://www.perplexity.ai/search/?q={}",
+    "ghp": "https://github.com/rum-and-code/{}",
     "ghr": "https://github.com/rum-and-code?q={}",
     "np": "https://search.nixos.org/packages?query={}",
     "no": "https://search.nixos.org/options?query={}",

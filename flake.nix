@@ -10,7 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    vimix-flake = {
+    vimix = {
       url = "github:Polensky/vimix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -28,7 +28,7 @@
           config = {allowUnfree = true;};
           overlays = [
             (final: prev: {
-              neovim = inputs.vimix-flake.packages.${system}.default;
+              neovim = inputs.vimix.packages.${system}.default;
             })
           ];
         };

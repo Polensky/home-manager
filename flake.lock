@@ -92,12 +92,12 @@
     "nil": {
       "inputs": {
         "flake-utils": [
-          "vimix-flake",
+          "vimix",
           "nvf",
           "flake-utils"
         ],
         "nixpkgs": [
-          "vimix-flake",
+          "vimix",
           "nvf",
           "nixpkgs"
         ],
@@ -203,13 +203,13 @@
       "inputs": {
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
-        "vimix-flake": "vimix-flake"
+        "vimix": "vimix"
       }
     },
     "rust-overlay": {
       "inputs": {
         "nixpkgs": [
-          "vimix-flake",
+          "vimix",
           "nvf",
           "nil",
           "nixpkgs"
@@ -259,7 +259,7 @@
         "type": "github"
       }
     },
-    "vimix-flake": {
+    "vimix": {
       "inputs": {
         "flake-parts": "flake-parts",
         "nixpkgs": [
