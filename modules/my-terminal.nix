@@ -37,13 +37,24 @@ in {
         local config = {}
 
         config.enable_tab_bar = false
+        config.window_close_confirmation = 'NeverPrompt'
 
         config.font = wezterm.font_with_fallback { "Fira Code" }
 
         config.font_size = 16.0
         config.color_scheme = 'Everforest Dark (Gogh)'
         config.window_background_opacity = 0.95
-        config.window_decorations = "RESIZE"
+
+        -- Set window decorations based on OS
+        if wezterm.target_triple:find('linux') then
+          config.window_decorations = "NONE"
+        elseif wezterm.target_triple:find('darwin') then
+          config.window_decorations = "RESIZE"
+        else
+          -- Default to RESIZE for any other OS
+          config.window_decorations = "RESIZE"
+        end
+
         config.window_padding = {
           left = 5,
           right = 5,
