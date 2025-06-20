@@ -61,12 +61,9 @@
 
     fira-code
 
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
+    (writeShellScriptBin "edit-home" ''
+      cd ~/.config/home-manager && nvim ./devices/xps13.nix
+    '')
     (writeShellScriptBin "hms" ''
       home-manager switch --flake ~/.config/home-manager#polen@xps13
     '')
