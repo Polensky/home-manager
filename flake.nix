@@ -14,6 +14,11 @@
       url = "github:Polensky/vimix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    yt-x = {
+      url = "github:Benexl/yt-x";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
