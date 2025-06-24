@@ -59,7 +59,7 @@
     aider-chat-full
     magic-wormhole
 
-    fira-code
+    nerd-fonts.fira-code
 
     (writeShellScriptBin "edit-home" ''
       cd ~/.config/home-manager && nvim ./devices/xps13.nix
@@ -162,6 +162,11 @@
     provider = "manual";
     latitude = 46.3;
     longitude = -72.65;
+  };
+
+  programs.eww = {
+    enable = true;
+    configDir = ./dofiles/eww;
   };
 
   # Let Home Manager install and manage itself.
