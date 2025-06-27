@@ -14,6 +14,10 @@
       url = "github:Polensky/vimix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    snsm = {
+      url = "github:Polensky/snsm";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

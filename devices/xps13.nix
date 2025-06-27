@@ -32,6 +32,7 @@
     vimiv-qt
     pcmanfm
     newsboat
+    inputs.snsm.packages.${system}.default
 
     # 3D stuff
     prusa-slicer
@@ -52,6 +53,7 @@
 
     pamixer
     playerctl
+    wayfarer
 
     # dev
     lazygit
@@ -93,13 +95,23 @@
     enable = true;
     settings = {
       add_newline = false;
+      right_format = "$time";
       battery = {
         display = [
           {
-            threshold = 15;
+            threshold = 20;
             style = "green";
           }
+          {
+            threshold = 10;
+            style = "bold red";
+          }
         ];
+      };
+      time = {
+        disabled = false;
+        format = "[$time]($style)";
+        time_format = "%H%M";
       };
     };
   };
@@ -162,11 +174,6 @@
     provider = "manual";
     latitude = 46.3;
     longitude = -72.65;
-  };
-
-  programs.eww = {
-    enable = true;
-    configDir = ./dofiles/eww;
   };
 
   # Let Home Manager install and manage itself.
