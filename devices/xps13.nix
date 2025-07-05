@@ -51,9 +51,11 @@
     passExtensions.pass-otp
     (pass-wayland.withExtensions (ext: with ext; [pass-otp]))
 
+    # media
     pamixer
     playerctl
     wayfarer
+    mpv
 
     # dev
     lazygit
@@ -66,9 +68,13 @@
     (writeShellScriptBin "edit-home" ''
       cd ~/.config/home-manager && nvim ./devices/xps13.nix
     '')
-    (writeShellScriptBin "hms" ''
-      home-manager switch --flake ~/.config/home-manager#polen@xps13
-    '')
+    (writeShellApplication {
+      name = "hms";
+      runtimeInputs = [pkgs.nix-output-monitor];
+      text = ''
+        home-manager switch --flake ~/.config/home-manager#polen@xps13 |& nom
+      '';
+    })
   ];
 
   fonts.fontconfig.enable = true;

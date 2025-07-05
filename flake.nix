@@ -15,6 +15,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    snsm = {
+      url = "github:Polensky/snsm";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     yt-x = {
       url = "github:Benexl/yt-x";
       inputs.nixpkgs.follows = "nixpkgs";
