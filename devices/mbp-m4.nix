@@ -23,7 +23,7 @@
   # environment.
   home.packages = with pkgs; [
     # dev
-    alacritty
+    neovim
     lazygit
     gnumake
     tmux
