@@ -4,6 +4,7 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs_25_05.url = "github:nixos/nixpkgs/nixos-25.05";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -28,10 +29,16 @@
 
   outputs = {
     nixpkgs,
+    nixpkgs_25_05,
     home-manager,
     ...
   } @ inputs: let
-    mkHomeConfig = machineModule: system:
+    mkHomeConfig = machineModule: system: let
+      pkgs_25_05 = import nixpkgs_25_05 {
+        inherit system;
+        config = {allowUnfree = true;};
+      };
+    in
       home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           inherit system;
@@ -48,7 +55,7 @@
           machineModule
         ];
 
-        extraSpecialArgs = {inherit system inputs;};
+        extraSpecialArgs = {inherit system inputs pkgs_25_05;};
       };
   in {
     homeConfigurations."polen@xps13" = mkHomeConfig ./devices/xps13.nix "x86_64-linux";

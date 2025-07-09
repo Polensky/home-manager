@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  pkgs_25_05,
   ...
 }: {
   # Home Manager needs a bit of information about you and the paths it should
@@ -22,7 +23,7 @@
   # environment.
   home.packages = with pkgs; [
     # dev
-    alacritty
+    neovim
     lazygit
     gnumake
     tmux
@@ -35,6 +36,9 @@
     pgcli
     tabview # csv viewer
     magic-wormhole
+    inputs.snsm.packages.${system}.default
+    numbat # very cool calculator
+    nix-output-monitor
 
     # media
     mpv
@@ -46,7 +50,7 @@
     inputs.yt-x.packages."${system}".default
 
     # llm
-    aider-chat-full
+    pkgs_25_05.aider-chat-full
 
     # email
     neomutt
@@ -75,7 +79,7 @@
       cd ~/.config/home-manager && nvim ./devices/mbp-m4.nix
     '')
     (writeShellScriptBin "hms" ''
-      home-manager switch --flake ~/.config/home-manager#charles@mbp-m4
+      home-manager switch --flake ~/.config/home-manager#charles@mbp-m4  |& nom
     '')
     (writeShellApplication {
       name = "ssm";
@@ -117,9 +121,6 @@
       wkc = "cd $(ls -d ~/workspace/* | fzf)";
       wko = "cd $(ls -d ~/workspace/* | fzf); nvim";
     };
-    initExtra = ''
-      bindkey '^X^E' edit-command-line
-    '';
   };
 
   programs.taskwarrior = {

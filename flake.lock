@@ -212,6 +212,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_25_05": {
+      "locked": {
+        "lastModified": 1751211869,
+        "narHash": "sha256-1Cu92i1KSPbhPCKxoiVG5qnoRiKTgR5CcGSRyLpOd7Y=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "b43c397f6c213918d6cfe6e3550abfe79b5d1c51",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-25.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nvf": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -239,6 +255,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
+        "nixpkgs_25_05": "nixpkgs_25_05",
         "snsm": "snsm",
         "vimix": "vimix",
         "yt-x": "yt-x"
@@ -357,11 +374,11 @@
         "nvf": "nvf"
       },
       "locked": {
-        "lastModified": 1750250106,
-        "narHash": "sha256-P3GRKnTUaAIzp7QyGXhfCgpB3pM+v1N0WEbTRBjmHA0=",
+        "lastModified": 1751981663,
+        "narHash": "sha256-my80si0dOblCN22faaFJu2EJtmGRnLR93LbUGeCS+WY=",
         "owner": "Polensky",
         "repo": "vimix",
-        "rev": "eeb6aec4edb30de23c73fb2624948219a33ca744",
+        "rev": "f0abdc9f8432dd06e37089602262cf6c33df6491",
         "type": "github"
       },
       "original": {
