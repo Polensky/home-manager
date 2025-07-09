@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  pkgs_25_05,
   ...
 }: {
   # Home Manager needs a bit of information about you and the paths it should
@@ -25,7 +26,7 @@
     # # "Hello, world!" when run.
     # hello
     brave
-    qutebrowser
+    pkgs_25_05.qutebrowser
     discord
     emacs30-pgtk
     zathura
