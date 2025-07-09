@@ -29,6 +29,14 @@ in {
       '';
     };
 
+    programs.yazi = {
+      enable = true;
+      enableZshIntegration = true;
+      plugins = with pkgs.yaziPlugins; {
+        inherit git;
+      };
+    };
+
     programs.wezterm = {
       enable = true;
       enableZshIntegration = true;
