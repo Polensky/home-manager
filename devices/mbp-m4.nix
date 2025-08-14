@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  pkgs_25_05,
   ...
 }: {
   # Home Manager needs a bit of information about you and the paths it should
@@ -22,7 +23,7 @@
   # environment.
   home.packages = with pkgs; [
     # dev
-    alacritty
+    neovim
     lazygit
     gnumake
     tmux
@@ -35,6 +36,9 @@
     pgcli
     tabview # csv viewer
     magic-wormhole
+    inputs.snsm.packages.${system}.default
+    numbat # very cool calculator
+    nix-output-monitor
 
     # media
     mpv
@@ -43,9 +47,10 @@
     cmus
     pngpaste
     yt-dlp
+    inputs.yt-x.packages."${system}".default
 
     # llm
-    aider-chat-full
+    pkgs_25_05.aider-chat-full
 
     # email
     neomutt
@@ -74,7 +79,7 @@
       cd ~/.config/home-manager && nvim ./devices/mbp-m4.nix
     '')
     (writeShellScriptBin "hms" ''
-      home-manager switch --flake ~/.config/home-manager#charles@mbp-m4
+      home-manager switch --flake ~/.config/home-manager#charles@mbp-m4  |& nom
     '')
     (writeShellApplication {
       name = "ssm";
@@ -116,9 +121,6 @@
       wkc = "cd $(ls -d ~/workspace/* | fzf)";
       wko = "cd $(ls -d ~/workspace/* | fzf); nvim";
     };
-    initExtra = ''
-      bindkey '^X^E' edit-command-line
-    '';
   };
 
   programs.taskwarrior = {
@@ -154,12 +156,16 @@
 
   programs.git = {
     enable = true;
+    userName = "Charles Sirois";
+    userEmail = "charles@rumandcode.io";
     hooks = {
       "prepare-commit-msg" = ./scripts/prepare-commit-msg.sh;
     };
     aliases = {
+      sw = "switch";
+      co = "checkout";
       # doesnt quite work
-      #lg = "lg = log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n""          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)"";
+      lg = "log --graph --abbrev-commit --decorate --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)\"";
     };
   };
 
@@ -185,11 +191,6 @@
 
     ".qutebrowser/everforest.py".source = dotfiles/qutebrowser/everforest.py;
     ".qutebrowser/config.py".source = dotfiles/qutebrowser/config.py;
-
-    ".gitconfig".text = ''
-      [alias]
-      lg = log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n""          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)"
-    '';
   };
 
   # Home Manager can also manage your environment variables through

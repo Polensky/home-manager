@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  pkgs_25_05,
   ...
 }: {
   # Home Manager needs a bit of information about you and the paths it should
@@ -25,13 +26,14 @@
     # # "Hello, world!" when run.
     # hello
     brave
-    qutebrowser
+    pkgs_25_05.qutebrowser
     discord
     emacs30-pgtk
     zathura
     vimiv-qt
     pcmanfm
     newsboat
+    inputs.snsm.packages.${system}.default
 
     # 3D stuff
     prusa-slicer
@@ -50,8 +52,11 @@
     passExtensions.pass-otp
     (pass-wayland.withExtensions (ext: with ext; [pass-otp]))
 
+    # media
     pamixer
     playerctl
+    wayfarer
+    mpv
 
     # dev
     lazygit
@@ -59,14 +64,18 @@
     aider-chat-full
     magic-wormhole
 
-    fira-code
+    nerd-fonts.fira-code
 
     (writeShellScriptBin "edit-home" ''
       cd ~/.config/home-manager && nvim ./devices/xps13.nix
     '')
-    (writeShellScriptBin "hms" ''
-      home-manager switch --flake ~/.config/home-manager#polen@xps13
-    '')
+    (writeShellApplication {
+      name = "hms";
+      runtimeInputs = [pkgs.nix-output-monitor];
+      text = ''
+        home-manager switch --flake ~/.config/home-manager#polen@xps13 |& nom
+      '';
+    })
   ];
 
   fonts.fontconfig.enable = true;
@@ -93,13 +102,23 @@
     enable = true;
     settings = {
       add_newline = false;
+      right_format = "$time";
       battery = {
         display = [
           {
-            threshold = 15;
+            threshold = 20;
             style = "green";
           }
+          {
+            threshold = 10;
+            style = "bold red";
+          }
         ];
+      };
+      time = {
+        disabled = false;
+        format = "[$time]($style)";
+        time_format = "%H%M";
       };
     };
   };
