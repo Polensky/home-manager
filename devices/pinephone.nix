@@ -26,12 +26,10 @@
     tmux
     fzf
     ranger
+		htop-vim
 
     # dev
     alejandra
-
-		# game
-		superTuxKart
 
     passExtensions.pass-otp
     (pass-wayland.withExtensions (ext: with ext; [pass-otp]))
