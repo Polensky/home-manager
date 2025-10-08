@@ -22,12 +22,11 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # hello
+    # impala #for connecting to wifi nicely
     brave
     pkgs_25_05.qutebrowser
     discord
+    signal-desktop
     emacs30-pgtk
     zathura
     vimiv-qt
@@ -42,12 +41,15 @@
 
     neovim
     ripgrep
-    tmux
     fzf
     fd
     brightnessctl
     unzip
     caligula
+
+    # DE related
+    hyprshot
+    waycorner
 
     passExtensions.pass-otp
     (pass-wayland.withExtensions (ext: with ext; [pass-otp]))
@@ -57,6 +59,7 @@
     playerctl
     wayfarer
     mpv
+    inkscape
 
     # dev
     lazygit
@@ -69,6 +72,7 @@
     (writeShellScriptBin "edit-home" ''
       cd ~/.config/home-manager && nvim ./devices/xps13.nix
     '')
+    (writeShellScriptBin "batstatus" (builtins.readFile ./scripts/batstat.sh))
     (writeShellApplication {
       name = "hms";
       runtimeInputs = [pkgs.nix-output-monitor];
@@ -86,6 +90,14 @@
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+  };
+
+  programs.tmux = {
+    enable = true;
+    mouse = true;
+    plugins = with pkgs.tmuxPlugins; [
+      vim-tmux-navigator
+    ];
   };
 
   programs.zsh = {
