@@ -24,7 +24,7 @@
   home.packages = with pkgs; [
     # impala #for connecting to wifi nicely
     brave
-    pkgs_25_05.qutebrowser
+    qutebrowser
     discord
     signal-desktop
     emacs30-pgtk
@@ -55,7 +55,6 @@
     (pass-wayland.withExtensions (ext: with ext; [pass-otp]))
 
     # media
-    pamixer
     playerctl
     wayfarer
     mpv
@@ -86,6 +85,10 @@
 
   programs.protonmail-bridge.enable = true;
   programs.my-terminal.enable = true;
+
+  programs.foot = {
+    enable = true;
+  };
 
   programs.direnv = {
     enable = true;
