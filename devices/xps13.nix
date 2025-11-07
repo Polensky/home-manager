@@ -81,13 +81,42 @@
     })
   ];
 
-  fonts.fontconfig.enable = true;
+  fonts.fontconfig = {
+    enable = true;
+  };
 
   programs.protonmail-bridge.enable = true;
   programs.my-terminal.enable = true;
 
   programs.foot = {
     enable = true;
+    settings = {
+      main = {
+        font = "monospace:size=14";
+      };
+      colors = {
+        background = "2d353b";
+        foreground = "d3c6aa";
+
+        regular0 = "475258"; # black
+        regular1 = "e67e80"; # red
+        regular2 = "a7c080"; # green
+        regular3 = "dbbc7f"; # yellow
+        regular4 = "7fbbb3"; # blue
+        regular5 = "d699b6"; # magenta
+        regular6 = "83c092"; # cyan
+        regular7 = "d3c6aa"; # white
+
+        bright0 = "475258"; # bright black
+        bright1 = "e67e80"; # bright red
+        bright2 = "a7c080"; # bright green
+        bright3 = "dbbc7f"; # bright yellow
+        bright4 = "7fbbb3"; # bright blue
+        bright5 = "d699b6"; # bright magenta
+        bright6 = "83c092"; # bright cyan
+        bright7 = "d3c6aa"; # bright white
+      };
+    };
   };
 
   programs.direnv = {
