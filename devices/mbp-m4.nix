@@ -26,7 +26,6 @@
     neovim
     lazygit
     gnumake
-    tmux
     fzf
     awscli2
     ssm-session-manager-plugin
@@ -51,6 +50,7 @@
 
     # llm
     pkgs_25_05.aider-chat-full
+    opencode
 
     # email
     neomutt
@@ -167,6 +167,18 @@
       # doesnt quite work
       lg = "log --graph --abbrev-commit --decorate --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)\"";
     };
+  };
+
+  programs.tmux = {
+    enable = true;
+    mouse = true;
+    clock24 = true;
+    extraConfig = ''
+      set-default colorset-option -ga terminal-overrides ",xterm-256color:Tc"
+    '';
+    plugins = with pkgs.tmuxPlugins; [
+      vim-tmux-navigator
+    ];
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
