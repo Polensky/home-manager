@@ -77,16 +77,16 @@
 # ############################################################### #
 
 # Open application
-#cmd - return : open -na "Alacritty"
-cmd - return : wezterm
-rcmd - a : open -na "Alacritty"
+#cmd - return : wezterm
+cmd - return : open -na "Alacritty"
 rcmd - z : zeditor
 hyper - e : emacs
 hyper - w : open -na "Qutebrowser"
 hyper - s : open -a "Slack"
 
 hyper - space : layout-toggle.sh
-meh - p : dmenu-pass
+meh - p : flameshot gui
+#meh - p : dmenu-pass
 meh - o : dmenu-pass-2fa
 
 cmd - q : yabai -m window --close

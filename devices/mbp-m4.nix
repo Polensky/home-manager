@@ -38,6 +38,7 @@
     inputs.snsm.packages.${system}.default
     numbat # very cool calculator
     nix-output-monitor
+    awsume
 
     # media
     mpv
@@ -47,6 +48,7 @@
     pngpaste
     yt-dlp
     inputs.yt-x.packages."${system}".default
+    flameshot
 
     # llm
     pkgs_25_05.aider-chat-full
@@ -105,7 +107,6 @@
   fonts.fontconfig.enable = true;
 
   programs.my-terminal.enable = true;
-  programs.my-zeditor.enable = true;
 
   programs.direnv = {
     enable = true;
@@ -120,6 +121,7 @@
       v = "nvim";
       wkc = "cd $(ls -d ~/workspace/* | fzf)";
       wko = "cd $(ls -d ~/workspace/* | fzf); nvim";
+      awsume = ". awsume";
     };
   };
 
@@ -174,7 +176,8 @@
     mouse = true;
     clock24 = true;
     extraConfig = ''
-      set-default colorset-option -ga terminal-overrides ",xterm-256color:Tc"
+      set -as terminal-features ',xterm*:RGB'
+      bind-key -n C-l send-keys C-l \; run 'sleep 0.1' \; clear-history
     '';
     plugins = with pkgs.tmuxPlugins; [
       vim-tmux-navigator
@@ -197,9 +200,6 @@
 
     ".config/skhd/skhdrc".source = dotfiles/skhdrc;
     ".config/yabai/yabairc".source = dotfiles/yabairc;
-
-    ".config/alacritty/alacritty.toml".source = dotfiles/alacritty/alacritty.toml;
-    ".config/alacritty/everforest_dark.toml".source = dotfiles/alacritty/everforest_dark.toml;
 
     ".qutebrowser/everforest.py".source = dotfiles/qutebrowser/everforest.py;
     ".qutebrowser/config.py".source = dotfiles/qutebrowser/config.py;

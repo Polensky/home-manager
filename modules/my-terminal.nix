@@ -37,8 +37,26 @@ in {
       };
     };
 
-    programs.wezterm = {
+    programs.alacritty = {
       enable = true;
+      theme = "everforest_dark";
+      settings = {
+        window = {
+          decorations = "buttonless";
+          opacity = 0.94;
+        };
+        font = {
+          size = 16;
+          normal = {
+            family = "Fira Code";
+            style = "Regular";
+          };
+        };
+      };
+    };
+
+    programs.wezterm = {
+      enable = false;
       enableZshIntegration = true;
       extraConfig = ''
         local wezterm = require 'wezterm'
