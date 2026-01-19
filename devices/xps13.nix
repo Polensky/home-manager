@@ -27,12 +27,13 @@
     qutebrowser
     discord
     signal-desktop
-    emacs30-pgtk
     zathura
     vimiv-qt
     pcmanfm
     newsboat
     inputs.snsm.packages.${system}.default
+    appimage-run
+    sshfs
 
     # 3D stuff
     prusa-slicer
@@ -63,8 +64,10 @@
     # dev
     lazygit
     gnumake
-    aider-chat-full
     magic-wormhole
+    opencode
+    taskwarrior3
+    timewarrior
 
     nerd-fonts.fira-code
 
@@ -81,13 +84,43 @@
     })
   ];
 
-  fonts.fontconfig.enable = true;
+  fonts.fontconfig = {
+    enable = true;
+  };
 
   programs.protonmail-bridge.enable = true;
   programs.my-terminal.enable = true;
 
   programs.foot = {
     enable = true;
+    settings = {
+      main = {
+        font = "monospace:size=14";
+      };
+      colors = {
+        alpha = 0.9;
+        background = "2d353b";
+        foreground = "d3c6aa";
+
+        regular0 = "475258"; # black
+        regular1 = "e67e80"; # red
+        regular2 = "a7c080"; # green
+        regular3 = "dbbc7f"; # yellow
+        regular4 = "7fbbb3"; # blue
+        regular5 = "d699b6"; # magenta
+        regular6 = "83c092"; # cyan
+        regular7 = "d3c6aa"; # white
+
+        bright0 = "475258"; # bright black
+        bright1 = "e67e80"; # bright red
+        bright2 = "a7c080"; # bright green
+        bright3 = "dbbc7f"; # bright yellow
+        bright4 = "7fbbb3"; # bright blue
+        bright5 = "d699b6"; # bright magenta
+        bright6 = "83c092"; # bright cyan
+        bright7 = "d3c6aa"; # bright white
+      };
+    };
   };
 
   programs.direnv = {
@@ -196,6 +229,21 @@
     provider = "manual";
     latitude = 46.3;
     longitude = -72.65;
+  };
+
+  services.flameshot = {
+    enable = true;
+    package = pkgs.flameshot.override {
+      enableWlrSupport = true;
+    };
+    settings = {
+      General = {
+        useGrimAdapter = true;
+        disabledTrayIcon = true;
+        copyPathAfterSave = true;
+        showDesktopNotification = false;
+      };
+    };
   };
 
   # Let Home Manager install and manage itself.
