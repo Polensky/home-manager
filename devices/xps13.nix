@@ -27,12 +27,13 @@
     qutebrowser
     discord
     signal-desktop
-    emacs30-pgtk
     zathura
     vimiv-qt
     pcmanfm
     newsboat
     inputs.snsm.packages.${system}.default
+    appimage-run
+    sshfs
 
     # 3D stuff
     prusa-slicer
@@ -63,8 +64,10 @@
     # dev
     lazygit
     gnumake
-    aider-chat-full
     magic-wormhole
+    opencode
+    taskwarrior3
+    timewarrior
 
     nerd-fonts.fira-code
 
@@ -95,6 +98,7 @@
         font = "monospace:size=14";
       };
       colors = {
+        alpha = 0.9;
         background = "2d353b";
         foreground = "d3c6aa";
 
@@ -225,6 +229,21 @@
     provider = "manual";
     latitude = 46.3;
     longitude = -72.65;
+  };
+
+  services.flameshot = {
+    enable = true;
+    package = pkgs.flameshot.override {
+      enableWlrSupport = true;
+    };
+    settings = {
+      General = {
+        useGrimAdapter = true;
+        disabledTrayIcon = true;
+        copyPathAfterSave = true;
+        showDesktopNotification = false;
+      };
+    };
   };
 
   # Let Home Manager install and manage itself.
