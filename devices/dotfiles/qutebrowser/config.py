@@ -2162,6 +2162,7 @@ c.url.searchengines = {
     "ghr": "https://github.com/rum-and-code?q={}",
     "np": "https://search.nixos.org/packages?query={}",
     "no": "https://search.nixos.org/options?query={}",
+    "jir": "https://rumandcode.atlassian.net/browse/{}",
 }
 
 ## Page(s) to open at the start.
