@@ -150,7 +150,6 @@
     enable = true;
     settings = {
       add_newline = false;
-      right_format = "$time";
       battery = {
         display = [
           {
@@ -162,11 +161,6 @@
             style = "bold red";
           }
         ];
-      };
-      time = {
-        disabled = false;
-        format = "[$time]($style)";
-        time_format = "%H%M";
       };
     };
   };
@@ -200,9 +194,6 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
-    ".config/alacritty/alacritty.toml".source = dotfiles/alacritty/alacritty.toml;
-    ".config/alacritty/everforest_dark.toml".source = dotfiles/alacritty/everforest_dark.toml;
-
     ".config/qutebrowser/everforest.py".source = dotfiles/qutebrowser/everforest.py;
     ".config/qutebrowser/config.py".source = dotfiles/qutebrowser/config.py;
   };
