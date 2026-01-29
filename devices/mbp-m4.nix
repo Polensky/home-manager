@@ -39,6 +39,7 @@
     numbat # very cool calculator
     nix-output-monitor
     awsume
+    ngrok
 
     # media
     mpv
@@ -53,6 +54,9 @@
     # llm
     pkgs_25_05.aider-chat-full
     opencode
+    
+    # writing
+    typst
 
     # email
     neomutt

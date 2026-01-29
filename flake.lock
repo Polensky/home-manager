@@ -321,11 +321,11 @@
         "nvf": "nvf"
       },
       "locked": {
-        "lastModified": 1768833224,
-        "narHash": "sha256-MmI18U/+nAAKGT1G+nZw47ri26RyY2EIENmLOa2l5Qg=",
+        "lastModified": 1769713827,
+        "narHash": "sha256-lZSUG03Xlvpbu4J0kUh97NN5zf+k0hW9usNflLvUbVE=",
         "owner": "Polensky",
         "repo": "vimix",
-        "rev": "402796c4b0476c14f7336d55e3ab661aba88f083",
+        "rev": "bcd3afc5f41d2e409c0b2b24073ce1bae2d864f9",
         "type": "github"
       },
       "original": {
