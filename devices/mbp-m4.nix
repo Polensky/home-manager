@@ -50,12 +50,15 @@
     yt-dlp
     inputs.yt-x.packages."${system}".default
     flameshot
+    weylus
 
     # llm
-    pkgs_25_05.aider-chat-full
+    aider-chat-full
     opencode
+    crush
     
     # writing
+    zathura
     typst
 
     # email
