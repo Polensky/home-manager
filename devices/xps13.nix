@@ -61,6 +61,9 @@
     mpv
     inkscape
 
+    # social
+    telegram-desktop
+
     # dev
     lazygit
     gnumake
