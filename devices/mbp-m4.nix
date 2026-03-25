@@ -40,23 +40,21 @@
     nix-output-monitor
     awsume
     ngrok
+    timewarrior
 
     # media
-    mpv
+    # mpv
     cmus
     ffmpeg
     cmus
     pngpaste
-    yt-dlp
-    inputs.yt-x.packages."${system}".default
+    #yt-dlp #broken
     flameshot
     weylus
 
     # llm
-    aider-chat-full
     opencode
-    crush
-    
+
     # writing
     zathura
     typst
@@ -111,6 +109,32 @@
         aws ssm start-session --profile "$profile" --target "$instance_id"
       '';
     })
+    (writeShellScriptBin "work" ''
+      dir=$(ls -d ~/workspace/* | fzf) || return
+      [ -z "$dir" ] && return
+
+      cd "$dir" || return
+
+      session=$(basename "$dir")
+
+      # If session already exists, just attach
+      if tmux has-session -t "$session" 2>/dev/null; then
+        tmux attach -t "$session"
+        return
+      fi
+
+      # New session, first window with nvim
+      tmux new-session -d -s "$session" -c "$dir" "nvim"
+
+      # Second window with opencode
+      tmux new-window  -t "$session:" -c "$dir" -n opencode "opencode"
+
+      # Third window with lazygit
+      tmux new-window  -t "$session:" -c "$dir" -n lazygit "lazygit"
+
+      # Attach to the session
+      tmux attach -t "$session"
+    '')
   ];
 
   fonts.fontconfig.enable = true;
@@ -167,8 +191,10 @@
 
   programs.git = {
     enable = true;
-    userName = "Charles Sirois";
-    userEmail = "charles@rumandcode.io";
+    settings = {
+      user.email = "Charles Sirois";
+      user.name = "charles@rumandcode.io";
+    };
     hooks = {
       "prepare-commit-msg" = ./scripts/prepare-commit-msg.sh;
     };
@@ -186,7 +212,8 @@
     clock24 = true;
     extraConfig = ''
       set -as terminal-features ',xterm*:RGB'
-      bind-key -n C-l send-keys C-l \; run 'sleep 0.1' \; clear-history
+      bind -n M-H previous-window
+      bind -n M-L next-window
     '';
     plugins = with pkgs.tmuxPlugins; [
       vim-tmux-navigator
