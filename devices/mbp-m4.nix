@@ -54,6 +54,7 @@
 
     # llm
     opencode
+    crush
 
     # writing
     zathura
@@ -67,6 +68,7 @@
     lynx
     notmuch
     abook
+    ollama
 
     fira-code
 
@@ -130,7 +132,7 @@
       tmux new-window  -t "$session:" -c "$dir" -n opencode "opencode"
 
       # Third window with lazygit
-      tmux new-window  -t "$session:" -c "$dir" -n lazygit "lazygit"
+      tmux new-window  -t "$session:" -c "$dir" -n shell
 
       # Attach to the session
       tmux attach -t "$session"
@@ -166,11 +168,17 @@
     };
   };
 
-  services.ollama = {
+  launchd.agents.ollama = {
     enable = true;
-    environmentVariables = {
-      OLLAMA_API_BASE = "http://127.0.0.1:11434";
-      OLLAMA_CONTEXT_LENGTH = "8192";
+    config = {
+      ProgramArguments = [ "${pkgs.ollama}/bin/ollama" "serve" ];
+      EnvironmentVariables = {
+        OLLAMA_HOST = "0.0.0.0:11434";
+      };
+      RunAtLoad = true;
+      KeepAlive = true;
+      StandardOutPath = "/tmp/ollama.log";
+      StandardErrorPath = "/tmp/ollama.log";
     };
   };
 

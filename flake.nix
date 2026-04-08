@@ -42,7 +42,12 @@
       home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           inherit system;
-          config = {allowUnfree = true;};
+          config = {
+            allowUnfree = true;
+            problems.handlers = {
+              nss_wrapper.broken = "warn"; # or "ignore"
+            };
+          };
           overlays = [
             (final: prev: {
               neovim = inputs.vimix.packages.${system}.default;
